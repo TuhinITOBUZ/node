@@ -10,13 +10,13 @@ function getWeatherData(loaction) {
         },
         {
             loaction : 'London',
-            temperature : 36, 
+            temperature : 36,
             humidity : 76,
             wind_speed_kms : 14,
             pressuere : 46, 
         },
         {
-            loaction : 'Mumbai',
+            location: 'Mumbai',
             temperature : 36, 
             humidity : 76,
             wind_speed_kms : 14,
