@@ -12,7 +12,6 @@ export function addLocation(db, location, tempC, condition) {
   } else {
     console.log("Location already exists");
   }
-  return db
 }
 
 

@@ -1,44 +1,66 @@
 import * as fs from 'fs';
 import { addLocation, updateLocation, deleteLocation } from './weatherOperations.mjs';
+import path from 'path';
 
+// function to read file
+export function readData(){
+  try{
+    let dbPath = path.resolve("db.txt")
+    const data = fs.readFileSync(dbPath, 'utf8');
+    const arr = JSON.parse(data)
+    console.log(arr);
+    return arr
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
 
-// fs.readFile('./db.txt', 'utf8', function (err, data){
-//   if (err) {
-//     return console.error(err)
-//   }
-//   const arr = JSON.parse(data)
-//   // console.log(arr)
+//  function to write file 
+export function writeData(arr){
+  try{
+    let dbPath = path.resolve("db.txt")
+    fs.writeFileSync(dbPath , JSON.stringify(arr),  function(err){
+      if (err) {
+        return console.error(err)
+      }
+    })
+  }
+  catch (err){
+    console.log(err)
+  }
+}
 
-//   addLocation(arr, 'Kerala', 25, 'Clear')
+// function to add new data
+export function addLoc(location, tempC, condition){
+  try {
+    const arr = readData()
+    addLocation(arr, location, tempC, condition)
+    writeData(arr)
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-//   updateLocation(arr, 'Kerala', 30, 'Sunny' )
+export function updateLoc(location, tempC, condition){
+  try {
+    const arr = readData() 
+    updateLocation(arr, location, tempC, condition )
+    writeData(arr)
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-//   deleteLocation(arr, 'Kerala')
-
-//   fs.writeFile('db.txt', JSON.stringify(arr), function(err){
-//     if (err) {
-//       return console.error(err)
-//     }
-//   })
-// })
-
-
+export function deleteLoc(location){
 try {
-  const data = fs.readFileSync('db.txt', 'utf8');
-  const arr = JSON.parse(data)
-  // console.log(arr)
-
-  addLocation(arr, 'Kerala', 25, 'Clear')
-
-  updateLocation(arr, 'Kerala', 30, 'Sunny' )
-
-  deleteLocation(arr, 'Kerala')
-
-  fs.writeFile('db.txt', JSON.stringify(arr), function(err){
-    if (err) {
-      return console.error(err)
-    }
-  })
+  const arr = readData()
+  deleteLocation(arr, location)
+  writeData(arr)
 } catch (err) {
   console.error(err);
 }
+}
+
+// addLoc('Kerala', 20, 'Clear')
+// deleteLoc('Kerala')
