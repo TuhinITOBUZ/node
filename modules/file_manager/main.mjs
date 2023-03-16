@@ -2,27 +2,32 @@ import process from "process";
 import path from "path";
 import { createFile, deleteFile, read, write } from "./fileOperations.mjs";
 import { mkDir, readDir, delDir, renameDir } from "./folderOperations.mjs";
-
+import http from "http";
 
 var args = process.argv;
 let address = path.dirname(args[1]) + "/root/";
-let task = args[2];
-let name = args[3];
-let text = args[4];
 
 function showList() {
-  console.log("Enter 1 to create a file");
-  console.log("Enter 2 to delete a file");
-  console.log("Enter 3 to read a file");
-  console.log("Enter 4 to write a file");
-  console.log("Enter 5 to make a directory");
-  console.log("Enter 6 to delete a directory");
-  console.log("Enter 7 to read the content of a directory");
-  console.log("Enter 8 to rename a directory");
+  console.log("Enter 'list' to display all options.");
+  console.log("Enter 1 to create a file.");
+  console.log("Enter 2 to delete a file.");
+  console.log("Enter 3 to read a file.");
+  console.log("Enter 4 to write a file.");
+  console.log("Enter 5 to make a directory.");
+  console.log("Enter 6 to delete a directory.");
+  console.log("Enter 7 to read the content of a directory.");
+  console.log("Enter 8 to rename a directory.");
+  console.log("Enter 0 to terminate.");
 }
 
-function main() {
-  if (task === "list") {
+showList();
+process.stdin.on("data", (data) => {
+  let task = data.toString().trim().split(" ")[0];
+  let name = data.toString().trim().split(" ")[1];
+  let text = data.toString().trim().split(" ")[2];
+  if (task === "0") {
+    process.exit();
+  } else if (task === "list") {
     showList();
   } else if (task === "1") {
     console.log(
@@ -72,7 +77,7 @@ function main() {
     delDir(address, name);
   } else if (task === "renameDir") {
     renameDir(address, name, text);
+  } else {
+    console.log(`Wrong Input`);
   }
-}
-
-main();
+});
