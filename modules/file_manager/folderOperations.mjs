@@ -29,29 +29,33 @@ export function readDir(address, relativePath) {
   }
 }
 
-// to delete dir
+// to delete directory
 export function delDir(address, relativePath) {
   if (relativePath === "/") {
     console.log("Cannot delete root!");
   } else {
     if (fs.existsSync(address + relativePath)) {
-      fs.rmdir(
-        address + relativePath,
-        { recursive: true, force: true },
-        (err) => {
-          if (err) {
-            throw err;
+      try {
+        fs.rmdir(
+          address + relativePath,
+          { recursive: true, force: true },
+          (err) => {
+            if (err) {
+              throw err;
+            }
+            console.log(`${relativePath} is deleted!`);
           }
-          console.log(`${relativePath} is deleted!`);
-        }
-      );
+        );
+      } catch (err) {
+        console.error(err);
+      }
     } else {
       console.log("Path does not exist!");
     }
   }
 }
 
-// to rename a dir
+// to rename a directory
 export function renameDir(address, name1, name2) {
   if (fs.existsSync(address + name1)) {
     try {

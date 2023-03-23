@@ -2,10 +2,12 @@ import process from "process";
 import path from "path";
 import { createFile, deleteFile, read, write } from "./fileOperations.mjs";
 import { mkDir, readDir, delDir, renameDir } from "./folderOperations.mjs";
-import http from "http";
 
-var args = process.argv;
+let args = process.argv;
 let address = path.dirname(args[1]) + "/root/";
+let task = "";
+let name = "";
+let text = "";
 
 function showList() {
   console.log("Enter 'list' to display all options.");
@@ -22,9 +24,9 @@ function showList() {
 
 showList();
 process.stdin.on("data", (data) => {
-  let task = data.toString().trim().split(" ")[0];
-  let name = data.toString().trim().split(" ")[1];
-  let text = data.toString().trim().split(" ")[2];
+  task = data.toString().trim().split(" ")[0];
+  name = data.toString().trim().split(" ")[1];
+  text = data.toString().trim().split(" ")[2];
   if (task === "0") {
     process.exit();
   } else if (task === "list") {

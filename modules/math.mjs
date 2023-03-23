@@ -1,14 +1,18 @@
-export function add(a,b)  {
-    return a+b;
+export function add(a, b) {
+  try {
+    if (isNaN(a) && isNaN(b)) {
+      return a + b;
+    }
+  } catch {
+    return "Not a number!";
+  }
 }
-export function sub(a,b) {
-    return a-b;
+export function sub(a, b) {
+  try {
+    if (isNaN(a) && isNaN(b)) {
+      return a - b;
+    }
+  } catch {
+    return "Not a number!";
+  }
 }
-// module.exports = {
-//     add : add
-// }
-
-// export default {
-//     add: add,
-//     sub: sub
-// }
