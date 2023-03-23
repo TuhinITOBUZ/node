@@ -23,7 +23,7 @@ function getRouterBasedData(route) {
   for (let i = 0; i < data.length; i++) {
     if (data[i].location === loc) {
       locData = data[i];
-    } 
+    }
   }
   return JSON.stringify({
     status,
@@ -41,7 +41,7 @@ function getRequestData(req) {
 }
 
 const server = http.createServer((req, res) => {
-  res.setHeader("Access-Control-Allow-Origin","*")
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.end(getRequestData(req));
 });
 
