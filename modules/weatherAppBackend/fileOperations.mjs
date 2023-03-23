@@ -3,7 +3,7 @@ import {
   addLocation,
   updateLocation,
   deleteLocation,
-} from "./weatherOperations.mjs";
+} from "./weatherDataOperations.mjs";
 import path from "path";
 
 // function to read file
@@ -19,7 +19,7 @@ export function readData() {
   }
 }
 
-//  function to write file
+//  function to write file with given array od data
 export function writeData(arr) {
   try {
     const dbPath = path.resolve("db.txt");
@@ -33,7 +33,7 @@ export function writeData(arr) {
   }
 }
 
-// function to add new data
+// function to add new data to the file
 export function addLoc(location, tempC, condition) {
   try {
     const arr = readData();
