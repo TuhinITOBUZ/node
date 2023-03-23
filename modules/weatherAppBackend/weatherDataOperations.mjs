@@ -8,7 +8,7 @@ export function addLocation(database, location, tempC, condition) {
         break;
       }
     }
-    if (flag == false) {
+    if (flag === false) {
       database.push({ location: location, tempC: tempC, condition: condition });
     } else {
       console.log("location already exists");
@@ -22,7 +22,7 @@ export function addLocation(database, location, tempC, condition) {
 export function updateLocation(database, location, tempC, condition) {
   try {
     return database.filter(function (element) {
-      if (element.location != location) {
+      if (element.location !== location) {
         return element;
       } else {
         element.tempC = tempC;
@@ -46,7 +46,7 @@ export function deleteLocation(database, location) {
         break;
       }
     }
-    if (flag == false) {
+    if (flag === false) {
       console.log("location doesn't exists");
     }
   } catch (err) {
@@ -64,7 +64,7 @@ export function getLocationData(database, location) {
         return database[i];
       }
     }
-    if (flag == false) {
+    if (flag === false) {
       console.log("location does not exists");
     }
   } catch (err) {
