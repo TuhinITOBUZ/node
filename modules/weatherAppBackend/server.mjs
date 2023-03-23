@@ -1,14 +1,15 @@
-const http = require("http");
-const fs = require("fs");
-const path = require("path");
+import http from "http"
+import fs from "fs"
+import path from "path";
+
 const port = 5000;
 
 function readData() {
   try {
-    const dbPath = path.resolve("./db.txt");
-    const data = fs.readFileSync(dbPath, "utf8");
-    const arr = JSON.parse(data);
-    return arr;
+    const databasePath = path.resolve("./database.txt");
+    const data = fs.readFileSync(databasePath, "utf8");
+    const array = JSON.parse(data);
+    return array;
   } catch (err) {
     console.log(err);
   }
@@ -18,17 +19,17 @@ const data = readData();
 
 function getRouterBasedData(route) {
   let status = 200;
-  var locData;
-  let loc = route.split("/")[1];
+  let locationData;
+  let location = route.split("/")[1];
   for (let i = 0; i < data.length; i++) {
-    if (data[i].location === loc) {
-      locData = data[i];
+    if (data[i].location === location) {
+      locationData = data[i];
     }
   }
   return JSON.stringify({
     status,
     route,
-    data: locData,
+    data: locationData,
   });
 }
 

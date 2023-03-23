@@ -1,29 +1,29 @@
 import * as fs from "fs";
+import path from "path";
 import {
   addLocation,
   updateLocation,
   deleteLocation,
 } from "./weatherDataOperations.mjs";
-import path from "path";
 
 // function to read file
 export function readData() {
   try {
-    const dbPath = path.resolve("db.txt");
-    const data = fs.readFileSync(dbPath, "utf8");
-    const arr = JSON.parse(data);
-    console.log(arr);
-    return arr;
+    const databasePath = path.resolve("database.txt");
+    const data = fs.readFileSync(databasePath, "utf8");
+    const array = JSON.parse(data);
+    console.log(array);
+    return array;
   } catch (err) {
     console.log(err);
   }
 }
 
 //  function to write file with given array od data
-export function writeData(arr) {
+export function writeData(array) {
   try {
-    const dbPath = path.resolve("db.txt");
-    fs.writeFileSync(dbPath, JSON.stringify(arr), function (err) {
+    const databasePath = path.resolve("database.txt");
+    fs.writeFileSync(databasePath, JSON.stringify(array), function (err) {
       if (err) {
         return console.error(err);
       }
@@ -34,33 +34,33 @@ export function writeData(arr) {
 }
 
 // function to add new data to the file
-export function addLoc(location, tempC, condition) {
+export function addNewlocation(location, tempC, condition) {
   try {
-    const arr = readData();
-    addLocation(arr, location, tempC, condition);
-    writeData(arr);
+    const array = readData();
+    addLocation(array, location, tempC, condition);
+    writeData(array);
   } catch (err) {
     console.error(err);
   }
 }
 
 // function to update a location data
-export function updateLoc(location, tempC, condition) {
+export function updateNewLcation(location, tempC, condition) {
   try {
-    const arr = readData();
-    updateLocation(arr, location, tempC, condition);
-    writeData(arr);
+    const array = readData();
+    updateLocation(array, location, tempC, condition);
+    writeData(array);
   } catch (err) {
     console.error(err);
   }
 }
 
 // function to delete a location data
-export function deleteLoc(location) {
+export function deleteExistingLocation(location) {
   try {
-    const arr = readData();
-    deleteLocation(arr, location);
-    writeData(arr);
+    const array = readData();
+    deleteLocation(array, location);
+    writeData(array);
   } catch (err) {
     console.error(err);
   }
