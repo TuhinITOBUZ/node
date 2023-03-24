@@ -2,10 +2,6 @@ import process from "process";
 import path from "path";
 import { createFile, deleteFile, read, write } from "./fileOperations.mjs";
 import { mkDir, readDir, delDir, renameDir } from "./folderOperations.mjs";
-// import * as readline from "readline/promises";
-// import { stdin as input, stdout as output } from "process";
-
-// const rl = readline.createInterface({ input, output });
 
 let args = process.argv;
 let address = path.dirname(args[1]) + "/root/";
