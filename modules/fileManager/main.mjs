@@ -2,6 +2,10 @@ import process from "process";
 import path from "path";
 import { createFile, deleteFile, read, write } from "./fileOperations.mjs";
 import { mkDir, readDir, delDir, renameDir } from "./folderOperations.mjs";
+// import * as readline from "readline/promises";
+// import { stdin as input, stdout as output } from "process";
+
+// const rl = readline.createInterface({ input, output });
 
 let args = process.argv;
 let address = path.dirname(args[1]) + "/root/";
@@ -33,7 +37,7 @@ process.stdin.on("data", (data) => {
     showList();
   } else if (task === "1") {
     console.log(
-      "Enter 'createFile' followed by /path/file-name.extension and text to create the file."
+      "Enter 'createFile' followed by /path/file-name.extension to create the file."
     );
   } else if (task === "2") {
     console.log(
@@ -80,6 +84,6 @@ process.stdin.on("data", (data) => {
   } else if (task === "renameDir") {
     renameDir(address, name, text);
   } else {
-    console.log(`Wrong Input`);
+    console.log(`Wrong input`);
   }
 });
