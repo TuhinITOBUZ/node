@@ -1,4 +1,4 @@
-import * as fs from "fs";
+import * as fs from "fs/promises";
 import path from "path";
 import {
   addLocation,
@@ -7,10 +7,10 @@ import {
 } from "./weatherDataOperations.mjs";
 
 // function to read file
-export function readData() {
+export async function readData() {
   try {
     const databasePath = path.resolve("database.txt");
-    const data = fs.readFileSync(databasePath, "utf8");
+    const data =await fs.readFile(databasePath, "utf8");
     const array = JSON.parse(data);
     console.log(array);
     return array;
@@ -20,10 +20,10 @@ export function readData() {
 }
 
 //  function to write file with given array od data
-export function writeData(array) {
+export async function writeData(array) {
   try {
     const databasePath = path.resolve("database.txt");
-    fs.writeFileSync(databasePath, JSON.stringify(array), function (err) {
+    await fs.writeFile(databasePath, JSON.stringify(array), function (err) {
       if (err) {
         return console.error(err);
       }

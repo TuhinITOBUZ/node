@@ -1,6 +1,6 @@
 export function add(a, b) {
   try {
-    if (isNaN(a) && isNaN(b)) {
+    if (!isNaN(a) && !isNaN(b)) {
       return a + b;
     }
   } catch {
@@ -9,7 +9,7 @@ export function add(a, b) {
 }
 export function sub(a, b) {
   try {
-    if (isNaN(a) && isNaN(b)) {
+    if (!isNaN(a) && !isNaN(b)) {
       return a - b;
     }
   } catch {

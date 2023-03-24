@@ -1,13 +1,13 @@
-import http from "http"
-import fs from "fs"
+import http from "http";
+import fs from "fs/promises";
 import path from "path";
 
 const port = 5000;
 
-function readData() {
+async function readData() {
   try {
     const databasePath = path.resolve("./database.txt");
-    const data = fs.readFileSync(databasePath, "utf8");
+    const data = await fs.readFile(databasePath, "utf8");
     const array = JSON.parse(data);
     return array;
   } catch (err) {
